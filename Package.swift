@@ -18,7 +18,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(name: "PureduxSideEffects",
                  url: "https://github.com/KazaiMazai/PureduxSideEffects.git",
-                 .branch("main"))
+                 .exact("1.0.0-beta.1"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
