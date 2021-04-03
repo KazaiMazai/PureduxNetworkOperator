@@ -14,11 +14,11 @@ public final class NetworkOperator: Operator<NetworkOperator.Request, URLSession
     private let session: URLSession
 
     public init(configuration: URLSessionConfiguration = .default,
-                queueLabel: String = "Network operator",
+                label: String = "Network",
                 qos: DispatchQoS = .utility,
-                logging: LogSource = .defaultLogging()) {
+                logger: Logger = .with(label: "🌎", logger: .console(.info))) {
         session = URLSession(configuration: configuration)
-        super.init(queueLabel: queueLabel, qos: qos, logging: logging)
+        super.init(label: label, qos: qos, logger: logger)
     }
 
     public override func createTaskFor(_ request: Request,
@@ -27,9 +27,9 @@ public final class NetworkOperator: Operator<NetworkOperator.Request, URLSession
         let task: URLSessionTask
         switch request.taskType {
         case .dataTask:
-            logging.log(.debug, "\(request.request.httpMethod ?? "") \(request.request)")
+            logger.log(.debug, "\(request.request.httpMethod ?? "") \(request.request)")
             if let httpBody = request.request.httpBody {
-                logging.log(.trace, msg: "Body:", with: httpBody)
+                logger.log(.trace, msg: "Body:", with: httpBody)
             }
 
             task = session.dataTask(with: request.request) { data, response, error in
