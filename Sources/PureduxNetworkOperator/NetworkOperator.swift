@@ -16,7 +16,7 @@ public final class NetworkOperator: Operator<NetworkOperator.Request, URLSession
     public init(configuration: URLSessionConfiguration = .default,
                 label: String = "Network",
                 qos: DispatchQoS = .utility,
-                logger: Logger = .with(label: "🌎", logger: .console(.info))) {
+                logger: Logger = .console(.info)) {
         session = URLSession(configuration: configuration)
         super.init(label: label, qos: qos, logger: logger)
     }
