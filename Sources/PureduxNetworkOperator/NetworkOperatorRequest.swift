@@ -32,7 +32,7 @@ extension NetworkOperator {
 }
 
 extension NetworkOperator.Request: OperatorRequest {
-    public func handle(_ result: OperatorResult<(Data?, URLResponse?, Error?)>) {
+    public func handle(_ result: TaskResult<(Data?, URLResponse?, Error?)>) {
         switch result {
         case let .success((data, response, error)):
             handler(data, response, error)

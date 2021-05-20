@@ -22,7 +22,7 @@ public final class NetworkOperator: Operator<NetworkOperator.Request, URLSession
     }
 
     public override func createTaskFor(_ request: Request,
-                                with completeHandler: @escaping (OperatorResult<(Data?, URLResponse?, Error?)>) -> Void) -> URLSessionTask {
+                                       with taskResultHandler: @escaping (TaskResult<(Data?, URLResponse?, Error?)>) -> Void) -> URLSessionTask {
 
         let task: URLSessionTask
         switch request.taskType {
@@ -33,7 +33,7 @@ public final class NetworkOperator: Operator<NetworkOperator.Request, URLSession
             }
 
             task = session.dataTask(with: request.request) { data, response, error in
-                completeHandler(.success((data, response, error)))
+                taskResultHandler(.success((data, response, error)))
             }
         }
 
