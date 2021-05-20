@@ -10,6 +10,8 @@ import PureduxSideEffects
 
 extension URLSessionTask: OperatorTask { }
 
+public typealias NetworkTaskResult = TaskResult<(Data?, URLResponse?, Error?), Void>
+
 public final class NetworkOperator: Operator<NetworkOperator.Request, URLSessionTask> {
     private let session: URLSession
 
@@ -22,7 +24,7 @@ public final class NetworkOperator: Operator<NetworkOperator.Request, URLSession
     }
 
     public override func createTaskFor(_ request: Request,
-                                       with taskResultHandler: @escaping (TaskResult<(Data?, URLResponse?, Error?)>) -> Void) -> URLSessionTask {
+                                       with taskResultHandler: @escaping (NetworkTaskResult) -> Void) -> URLSessionTask {
 
         let task: URLSessionTask
         switch request.taskType {
