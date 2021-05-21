@@ -40,7 +40,7 @@ extension NetworkOperator.Request: OperatorRequest {
             break
         case .statusChanged:
             break
-        case .error(let error):
+        case .failure(let error):
             handler(nil, nil, error)
         }
     }
