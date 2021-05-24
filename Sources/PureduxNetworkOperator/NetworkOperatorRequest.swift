@@ -13,17 +13,20 @@ extension NetworkOperator {
         public init(id: UUID,
                     request: URLRequest,
                     taskType: TaskType,
-                    handler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+                    handler: @escaping (Data?, URLResponse?, Error?) -> Void,
+                    statusHandler: ((TaskStatusType) -> Void)? = nil) {
             self.id = id
             self.request = request
             self.taskType = taskType
             self.handler = handler
+            self.statusHandler = statusHandler
         }
 
         public let id: UUID
         public let request: URLRequest
         public let taskType: TaskType
         public let handler: (Data?, URLResponse?, Error?) -> Void
+        public let statusHandler: ((TaskStatusType) -> Void)?
     }
 
     public enum TaskType {
@@ -38,10 +41,22 @@ extension NetworkOperator.Request: OperatorRequest {
             handler(data, response, error)
         case .cancelled:
             break
-        case .statusChanged:
-            break
+        case .statusChanged(let status):
+            statusHandler?(status)
         case .failure(let error):
             handler(nil, nil, error)
         }
+    }
+}
+
+
+public extension NetworkOperator {
+    enum TaskStatusType {
+        case taskStatus(TaskStatus)
+    }
+
+    enum TaskStatus {
+        case waitingForConnectivity
+        case willBeginDelayedRequest
     }
 }
