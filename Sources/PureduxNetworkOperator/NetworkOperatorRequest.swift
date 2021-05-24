@@ -10,11 +10,14 @@ import PureduxSideEffects
 
 extension NetworkOperator {
     public struct Request {
+        public typealias RequestHandler = (Data?, URLResponse?, Error?) -> Void
+        public typealias RequestStatusHandler = (TaskStatusType) -> Void
+
         public init(id: UUID,
                     request: URLRequest,
                     taskType: TaskType,
-                    handler: @escaping (Data?, URLResponse?, Error?) -> Void,
-                    statusHandler: ((TaskStatusType) -> Void)? = nil) {
+                    handler: @escaping RequestHandler,
+                    statusHandler: RequestStatusHandler? = nil) {
             self.id = id
             self.request = request
             self.taskType = taskType
@@ -25,8 +28,8 @@ extension NetworkOperator {
         public let id: UUID
         public let request: URLRequest
         public let taskType: TaskType
-        public let handler: (Data?, URLResponse?, Error?) -> Void
-        public let statusHandler: ((TaskStatusType) -> Void)?
+        public let handler: RequestHandler
+        public let statusHandler: RequestStatusHandler?
     }
 
     public enum TaskType {
