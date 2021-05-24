@@ -15,12 +15,11 @@ typealias NetworkTaskResultHandler = (NetworkTaskResult) -> Void
 
 public final class NetworkOperator: Operator<NetworkOperator.Request, URLSessionTask> {
     private var taskResultHandlers: [Int: NetworkTaskResultHandler] = [:]
-    private let configuration: URLSessionConfiguration
-    private lazy var urlSessionDelegate: URLSessionDelegate = makeURLSessionDelegate()
+    private let configuration: URLSessionConfiguration 
     private lazy var session: URLSession = {
         URLSession(
             configuration: configuration,
-            delegate: urlSessionDelegate,
+            delegate: makeURLSessionDelegate(),
             delegateQueue: nil)
     }()
 
