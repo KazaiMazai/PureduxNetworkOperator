@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/KazaiMazai/PureduxSideEffects.git",
         "state": {
           "branch": "dev",
-          "revision": "6fe702d430a2a78da8638d7d3757da43bc91627b",
+          "revision": "14af73aca18755a906b3cda89a54d9353ca587e5",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/KazaiMazai/PureduxStore.git",
         "state": {
           "branch": "dev",
-          "revision": "2ebb8d3766be2e352dbc6a3bc52062f8f7b00c26",
+          "revision": "18ecd2f6c7ed0801be2c65e33842afe02ea7f6e3",
           "version": null
         }
       }
