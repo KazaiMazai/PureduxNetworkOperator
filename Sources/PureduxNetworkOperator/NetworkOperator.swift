@@ -14,18 +14,15 @@ public typealias NetworkTaskResult = TaskResult<(Data?, URLResponse?, Error?), N
 typealias NetworkTaskResultHandler = (NetworkTaskResult) -> Void
 
 public final class NetworkOperator: Operator<NetworkOperator.Request, URLSessionTask> {
+    private var taskResultHandlers: [Int: NetworkTaskResultHandler] = [:]
     private let configuration: URLSessionConfiguration
-
+    private lazy var urlSessionDelegate: URLSessionDelegate = makeURLSessionDelegate()
     private lazy var session: URLSession = {
         URLSession(
             configuration: configuration,
             delegate: urlSessionDelegate,
             delegateQueue: OperationQueue.current)
     }()
-
-    private lazy var urlSessionDelegate: URLSessionDelegate = makeURLSessionDelegate()
-
-    private var taskResultHandlers: [Int: NetworkTaskResultHandler] = [:]
 
     public init(configuration: URLSessionConfiguration = .default,
                 label: String = "Network",
