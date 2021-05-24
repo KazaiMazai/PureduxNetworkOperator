@@ -21,7 +21,7 @@ public final class NetworkOperator: Operator<NetworkOperator.Request, URLSession
         URLSession(
             configuration: configuration,
             delegate: urlSessionDelegate,
-            delegateQueue: OperationQueue.main)
+            delegateQueue: nil)
     }()
 
     public init(configuration: URLSessionConfiguration = .default,
