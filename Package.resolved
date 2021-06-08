@@ -5,18 +5,18 @@
         "package": "PureduxSideEffects",
         "repositoryURL": "https://github.com/KazaiMazai/PureduxSideEffects.git",
         "state": {
-          "branch": "main",
-          "revision": "0dba6eec5474667d1f73a15c45ee7e7e33462cf9",
-          "version": null
+          "branch": null,
+          "revision": "6abfe547066f9941dc7b6ebba716906a4280747c",
+          "version": "1.0.0-beta.2"
         }
       },
       {
         "package": "PureduxStore",
         "repositoryURL": "https://github.com/KazaiMazai/PureduxStore.git",
         "state": {
-          "branch": "main",
-          "revision": "5d0d2820685b502a9feb3a317160ba808d2b7b16",
-          "version": null
+          "branch": null,
+          "revision": "688c077b0a0285d3e7b79b3965d78c8fed4bd561",
+          "version": "1.0.0-beta.2"
         }
       }
     ]
